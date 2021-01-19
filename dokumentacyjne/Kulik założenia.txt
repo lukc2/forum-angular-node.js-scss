@@ -1,0 +1,16 @@
+Na forum mamy różne kategorie dostępne na pasku nawigacyjnym (z  boku)
+
+W każdej kategorii jest spis wątków, widac tytuł (który jest linkiem do wątku), nazwę założyciela, datę założenia oraz datę ostatniej modyfikacji (też można ilosć postów, chyba nie powinno byc trudne zapytanie)
+
+Wątki są sortowane od najświeżej aktualizowanego do najdawniej
+
+Jest guzik do stworzenia nowego wątku, użytkownik wtedy jest przekierowany do strony z formularzem z dwoma polami tekstowymi, jednym na tytuł wątku, jednym na jego zawartość, automatycznie też jest przesyłana nazwa zalogowanego obecne użytkownika, a data stworzenia i modyfikacji jest bazowo ustawiona na obecną datę.  
+
+Posty są wyświetlane chronologicznie, a każdy post jest podpisany nazwą użytkownika oraz datą wysłania postu. Na dole jest formularz z polem tekstowym gdzie wpisywana jest zawartośc postu, po wysłaniu automatycznie jest też wysyłana nazwa zalogowanego użytkownika oraz id lub nazwa bieżącego wątku, po wysłaniu jest mu też przypisywana bieżąca data, która jest też wtedy datą ostatniej aktualizacji bieżącego wątku. (mogą być dwa pola w formularzu na implementacje tych linków do obrazków i filmików, ale tu zależy od twojego zyczenia)
+
+najlepiej aby niezalogowany użytkownik w ogóle nic nie widział
+
+u góry powinien być pasek gdzie możesz się gdy jesteś niezalogowany rejestrować/logować a gdy jesteś zalogowany to wylogować
+
+(dodatkowo jak będzie dobrze iść to można dodać panel użytkownika i panel admina, może jakieś zamykanie wątków)
+
