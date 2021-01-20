@@ -1,0 +1,64 @@
+/*!
+
+=========================================================
+* Paper Dashboard Angular - v2.2.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/paper-dashboard-angular
+* Copyright 2019 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://github.com/creativetimofficial/paper-dashboard-angular/blob/master/LICENSE.md)
+
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+*/
+
+@import 'app/variables';
+@import 'app/mixins';
+
+// Plugins CSS
+@import "app/plugins/plugin-animate-bootstrap-notify";
+@import "app/plugins/plugin-perfect-scrollbar";
+
+// Core CSS
+@import "app/buttons";
+@import "app/inputs";
+@import "app/typography";
+@import "app/misc";
+@import "app/checkboxes-radio";
+
+
+// components
+@import "app/navbar";
+@import "app/page-header";
+@import "app/dropdown";
+@import "app/alerts";
+@import "app/images";
+@import "app/nucleo-outline";
+@import "app/tables";
+@import "app/sidebar-and-main-panel";
+@import "app/footers";
+@import "app/fixed-plugin";
+
+// cards
+@import "app/cards";
+@import "app/cards/card-plain";
+@import "app/cards/card-chart";
+@import "app/cards/card-user";
+@import "app/cards/card-map";
+@import "app/cards/card-stats";
+
+// angular differences
+@import "app/angular/plugin-ngx-toastr";
+@import "app/angular/sidebar-and-main-panel";
+@import "app/angular/dropdown";
+@import "app/angular/inputs";
+@import "app/angular/fixed-plugin";
+
+@import "app/responsive";
+
+//manual css
+@import "app/content";
