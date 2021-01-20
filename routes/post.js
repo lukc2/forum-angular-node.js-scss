@@ -1,11 +1,11 @@
 const express=require('express');
 const router=express.Router();
 const db=require('../config/database');
-const Test=require('../models/Test');
-router.get('/',(req,res)=>Test.findAll()
+const Post=require('../models/Post');
+router.get('/',(req,res)=>Post.findAll()
 .then(test=>{
     console.log(test);
-    res.sendStatus(200);
+    res.send(test);
 
 })
 .catch(err=>console.log(err))
