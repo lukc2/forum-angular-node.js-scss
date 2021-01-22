@@ -1,0 +1,127 @@
+WSZYSTKIE STRONY:
+
+	KATEGORIA = "SELECT * FROM kategoria"
+	foreach wypisuje w navbarze
+		NAZWA (jest to link do "/$kategoria", przesyła id kategorii przy klinięciu)
+
+	u góry pasek z przyciskiem loguj/wyloguj
+
+	jeśli nie jest się zalogowanym to nie wyświetla treści, tylko szkielet (tak chyba będzie łatwiej niż 	oprogramować warunki na dodawanie postów i wątków tylko jak jest się zalogowanym)
+
+
+FORMULARZ REJESTRACJI:
+"/rejestracja":{
+	pola:
+	NAZWA
+	LOGIN
+	HASŁO
+	EMAIL
+
+	do bazy idzie:
+	INSERT INTO uzytkownik (nazwa, login, haslo, email)
+	VALUES ($nazwa, $login, $haslo, $email);
+
+	po zarejestrowaniu przekierowanie do formularza logowania
+
+}
+
+FORMULARZ LOGOWANIA:
+"/loguj":{
+}
+
+FORMULARZ WYLOGOWANIA
+"/wyloguj":{
+}
+
+
+STRONA GŁÓWNA:
+"/":{
+	wyświetla wszystkie watki z każdej kategorii
+	WATKI = "SELECT watek.id, watek.nazwa, kategoria.nazwa, uzytkownik.nazwa, watek.data_zalozenia, watek.data_modyfikacji, watek.kategoria_id FROM watek
+	INNER JOIN kategoria ON watek.kategoria_id = kategoria.id
+	INNER JOIN uzytkownik ON watek.uzytkownik_id = uzytkownik.id
+	ORDER BY watek.data_modyfikacji DESC;"
+
+	foreach wyświetla wątki
+		NAZWA (link do strony wątku /$kategoria.nazwa/$watek.nazwa   przesyła dalej    przesyła dalej $watek.id)
+		NAZWA UZYTKOWNIKA
+		DATA_ZALOZENIA
+		DATA_MODYFIKACJI
+}}
+
+STRONA KATEGORII:
+"/$kategoria.nazwa":{
+
+	$KATEGORIA = ID przesłany przez zmienną 
+
+	
+	wyświetla wszystkie watki z danej kategorii
+	SELECT watek.id, watek.nazwa, kategoria.nazwa, uzytkownik.nazwa, watek.data_zalozenia, watek.data_modyfikacji FROM watek
+	INNER JOIN kategoria ON watek.kategoria_id = kategoria.id
+	INNER JOIN uzytkownik ON watek.uzytkownik_id = uzytkownik.id
+	WHERE watek.kategoria_id = $KATEGORIA
+	ORDER BY watek.data_modyfikacji DESC
+
+	foreach wyświetla wątki
+		NAZWA (link do strony wątku /$kategoria.nazwa/$watek.nazwa   przesyła dalej $watek.id)
+		NAZWA UZYTKOWNIKA
+		DATA_ZALOZENIA
+		DATA_MODYFIKACJI
+
+	na dole button "stwórz wątek", który jest linkiem do /$kategoria.nazwa/dodajwatek przekazuje dalej $KATEGORIA
+}
+
+FORMULARZ DODANIA WĄTKU:
+"/$kategoria.nazwa":{
+
+	$KATEGORIA = ID przesłany przez zmienną 
+	$UZYTKOWNIK = id uzytkownika zalogowanego, jakkolwiek to będzie implementowane, może przez sesje?
+	
+	pola:
+		TYTUŁ
+		TRESC
+
+	przy wysłaniu:
+		INSERT INTO watek (nazwa, kategoria_id, uzytkownik_id)
+		VALUES ($tytuł, $KATEGORIA, $UZYTKOWNIK);
+		
+		INSERT INTO post (watek_id, uzytkownik_id, tresc)
+		VALUES((SELECT id from watek where nazwa='Mam jaja'), $UZYTKOWNIK, $tresc);
+
+	przekierowuje do strony nowo-utworzonego wątku
+
+}
+
+STRONA WĄTKU:
+"/$kategoria.nazwa/$watek.nazwa":{
+	
+	$WATEK = ID przekazany przez zmienną
+	$UZYTKOWNIK = id uzytkownika zalogowanego, jakkolwiek to będzie implementowane, może przez sesje?
+
+	wyświetla wszystkie posty z danego wątku
+
+	POSTY = "SELECT post.watek_id,uzytkownik.nazwa, post.tresc, post.data_wyslania FROM post
+	INNER JOIN uzytkownik ON post.uzytkownik_id = uzytkownik.id
+	WHERE watek_id = $WATEK"
+
+	foreach wyświetla posty
+	NAZWA UZYTKOWNIKA
+	DATA WYSLANIA
+	TRESC
+
+
+	na dole formularz z jednym polem:
+		TRESC
+	
+	po wyslaniu:
+		INSERT INTO post (watek_id, uzytkownik_id, tresc)
+		VALUES ($WATEK, $UZYTKOWNIK, $tresc)
+		
+		UPDATE watek SET data_modyfikacji = current_timestamp
+		WHERE id = $WATEK;
+
+	przekierowuje do strony wątku
+		
+
+}
+
