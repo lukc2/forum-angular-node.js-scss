@@ -2,7 +2,7 @@ WSZYSTKIE STRONY:
 
 	KATEGORIA = "SELECT * FROM kategoria"
 	foreach wypisuje w navbarze
-		NAZWA (jest to link do "/$kategoria", przesyła id kategorii przy klinięciu)
+		NAZWA (jest to link do "/kategoria/$kategoria_id", przesyła id kategorii przy klinięciu)
 
 	u góry pasek z przyciskiem loguj/wyloguj
 
@@ -43,14 +43,14 @@ STRONA GŁÓWNA:
 	ORDER BY watek.data_modyfikacji DESC;"
 
 	foreach wyświetla wątki
-		NAZWA (link do strony wątku /$kategoria.nazwa/$watek.nazwa   przesyła dalej    przesyła dalej $watek.id)
+		NAZWA (link do strony wątku /kategoria/$kategoria_id/watek/$watek_id   przesyła dalej    przesyła dalej $watek.id)
 		NAZWA UZYTKOWNIKA
 		DATA_ZALOZENIA
 		DATA_MODYFIKACJI
 }}
 
 STRONA KATEGORII:
-"/$kategoria.nazwa":{
+"/kategoria/$kategoria_id":{
 
 	$KATEGORIA = ID przesłany przez zmienną 
 
@@ -72,7 +72,7 @@ STRONA KATEGORII:
 }
 
 FORMULARZ DODANIA WĄTKU:
-"/$kategoria.nazwa":{
+"/kategoria/$kategoria_id/dodaj_watek":{
 
 	$KATEGORIA = ID przesłany przez zmienną 
 	$UZYTKOWNIK = id uzytkownika zalogowanego, jakkolwiek to będzie implementowane, może przez sesje?
@@ -93,7 +93,7 @@ FORMULARZ DODANIA WĄTKU:
 }
 
 STRONA WĄTKU:
-"/$kategoria.nazwa/$watek.nazwa":{
+"/kategoria/$kategoria_id/watek/$watek_id":{
 	
 	$WATEK = ID przekazany przez zmienną
 	$UZYTKOWNIK = id uzytkownika zalogowanego, jakkolwiek to będzie implementowane, może przez sesje?
