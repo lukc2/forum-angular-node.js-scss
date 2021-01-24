@@ -1,35 +1,51 @@
 
-
-  <div class="col-md-12">
-        <form class="form-control" [formGroup]="postGroup">
-          <textarea maxlength="2000" name="contentText" class="content-input"></textarea>
-
+  <div class="col-md-12" id="formCheck" (click)="logCheck()">
+        <form [formGroup]="form" class="form-control" (ngSubmit)="onSubmit()">
+          <p style="font-size: 30px">Add post</p>
+          <div class="form-group">
+            Title:<br>
+            <input *ngIf="!isLogged"[attr.disabled]="true" size="80%" type="text" name="title" id="title" required="true">
+          </div>
+          <div class="form-group">
+          Text:<br>
+          <textarea *ngIf="!isLogged"[attr.disabled]="true" maxlength="2000" name="content" class="content-input" ></textarea>
+          </div>
+          <div class="form-group">
           <br>Add content link:
-          <input size="50%" type="url" name="contentLink">
-          <br>
-          <button class="btn" type="submit">Post</button>
+          <input *ngIf="!isLogged"[attr.disabled]="true" size="50%" type="url" name="content_url">
+          </div>
+          <div class="form-group">
+
+          <button *ngIf="!isLogged"[attr.disabled]="true" class="btn" type="submit">Post</button>
+            <b style="margin-left: 30px" *ngIf="!isLogged">You have to log in to post!</b>
+          </div>
         </form>
-  </div><br>
+  </div>
 
+<br>
 
-<div class="row">
-  <div class="col-md-12">
-    <div class="card ">
-      <div class="card-header ">
-        <h2 class="card-title">Post pierwszy Computers</h2>
-        <p class="card-category">Computers</p>
-      </div>
-      <div class="card-body ">
-
-
-      </div>
-      <div class="card-footer ">
-        Maciej Stefanowicz
-        <hr>
-        <div class="stats">
-          <i class="fa fa-calendar"></i> 18.01.2020
+<ng-template ngFor let-item [ngForOf]="posts">
+  <a href="#/page#{{item['id']}}">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card ">
+        <div class="card-header ">
+          <h2 class="card-title">{{item["Name"]}}</h2>
+  <!--        <p class="card-category">{{item["Category"]}}</p>-->
+        </div>
+        <div class="card-body ">
+          <div *ngIf="(item['Content']).length>300">{{item["Content"]|slice:0:300}}...</div>
+          <div *ngIf="(item['Content']).length<=300">{{item["Content"]}}</div>
+        </div>
+        <div class="card-footer ">
+          {{item["Author"]}}
+          <hr>
+          <div class="stats">
+            <i class="fa fa-calendar"></i> {{item["Date"]}}
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+  </a>
+</ng-template>

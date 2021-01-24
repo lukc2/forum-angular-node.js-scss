@@ -9,15 +9,15 @@ export interface RouteInfo {
 }
 
 export const ROUTES: RouteInfo[] = [
-    { path: '/dashboard',     title: 'Dashboard',       icon:'nc-app',       class: '' },
-    { path: '/computers',     title: 'computers',       icon:'nc-tv-2',      class: '' },
-    { path: '/music',         title: 'Music',           icon:'nc-note-03',   class: '' },
-    { path: '/news',          title: 'News',            icon:'nc-planet',    class: '' },
+    { path: '/dashboard',     title: 'Dashboard',       icon: 'nc-app',       class: '' },
+    { path: '/computers',     title: 'computers',       icon: 'nc-tv-2',      class: '' },
+    { path: '/music',         title: 'Music',           icon: 'nc-note-03',   class: '' },
+    { path: '/news',          title: 'News',            icon: 'nc-planet',    class: '' },
 ];
 
 @Component({
     moduleId: module.id,
-    selector: 'sidebar-cmp',
+    selector: 'app-sidebar-cmp',
     templateUrl: 'sidebar.component.html',
 })
 
