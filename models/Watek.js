@@ -1,29 +1,28 @@
-const Sequelize=require('sequelize');
-const db=require('../config/database');
-
-const Watek=db.define('watek',{
-    kategoria_id:{
-        type: Sequelize.INTEGER
-    },
-    uzytkownik_id:{
-        type: Sequelize.INTEGER
-    },
-    nazwa:{
-        type: Sequelize.TEXT,
-        allowNull:false,
-        unique: true
-    },
-    data_zalozenia:{
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW
-    },
-    data_modyfikacji:{
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW
-    },
-
-},{
-    tableName: 'post',
-    timestamps:false
-});
-module.exports=Watek;
+module.exports=module.exports=(sequelize,DataTypes)=>{
+    const Watek=sequelize.define('watek',{
+        kategoria_id:{
+            type: DataTypes.INTEGER
+        },
+        uzytkownik_id:{
+            type: DataTypes.INTEGER
+        },
+        nazwa:{
+            type: DataTypes.TEXT,
+            allowNull:false,
+            unique: true
+        },
+        data_zalozenia:{
+            type: DataTypes.DATE,
+            defaultValue: DataTypes.NOW
+        },
+        data_modyfikacji:{
+            type: DataTypes.DATE,
+            defaultValue: DataTypes.NOW
+        },
+    
+    },{
+        tableName: 'watek',
+        timestamps:false
+    });
+    return Watek;
+};

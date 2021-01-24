@@ -1,30 +1,32 @@
-const Sequelize=require('sequelize');
-const db=require('../config/database');
+module.exports = module.exports = (sequelize, DataTypes) => {
+    const Uzytkownik = sequelize.define('uzytkownik', {
+        nazwa: {
+            type: DataTypes.TEXT,
+            allowNull: false,
+            defaultValue: "test",
+            unique: true
+        },
+        login: {
+            type: DataTypes.TEXT,
+            allowNull: false,
+            unique: true
+        },
+        haslo: {
+            type: DataTypes.TEXT,
+            allowNull: false
+        },
+        email: {
+            type: DataTypes.TEXT,
+            allowNull: false
+        },
+        ranga: {
+            type: DataTypes.TEXT,
+            defaultValue: "user"
+        },
+    }, {
+        tableName: 'uzytkownik',
+        timestamps: false
+    });
 
-const Uzytkownik=db.define('uzytkownik',{
-    nazwa:{
-        type: Sequelize.TEXT,
-        allowNull: false,
-        defaultValue: "test"
-    },
-    login:{
-        type: Sequelize.TEXT,
-        allowNull: false
-    },
-    haslo:{
-        type: Sequelize.TEXT,
-        allowNull: false
-    },
-    email:{
-        type: Sequelize.TEXT,
-        allowNull: false
-    },
-    ranga:{
-        type: Sequelize.TEXT,
-        defaultValue: "user"
-    },
-},{
-    tableName: 'post',
-    timestamps:false
-});
-module.exports=Uzytkownik;
+    return Uzytkownik;
+};
