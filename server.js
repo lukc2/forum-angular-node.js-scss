@@ -42,17 +42,23 @@ app.use('/rejestracja',middlewares.loggedIn, require('./routes/rejestracja'));
 app.use('/loguj',middlewares.loggedIn, require('./routes/loguj'));
 app.use('/wyloguj',middlewares.auth, require('./routes/wyloguj'));
 app.get("/",middlewares.auth,async (req,res)=>{
-    await db.Watek.findAll({
+    await db.Kategoria.findAll({
         include:[{
-            model:db.Kategoria,
-            attributes: ["nazwa"]
-        },{
-            model:db.Uzytkownik,
-            attributes: ["nazwa"]
+            model:db.Watek,
+            attributes: ["nazwa"],
+            include:[{
+                model:db.Uzytkownik,
+                attributes: ["nazwa"]
+            }]
         }],
-        order:["data_modyfikacji",'desc']
+        order:[[db.Watek,"data_modyfikacji",'DESC']]
     }).then(data=>{
         res.json(data);
+    }).catch(err=>{
+        res.json({
+            success:false,
+            errors: err
+        })
     })
 });
 //kategoria :id;:id/dodaj_watek; :id/watek/:watekid

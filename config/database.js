@@ -19,13 +19,13 @@ db.Kategoria.hasMany(db.Watek, {
     foreignKey: 'kategoria_id',
     allowNull: false
 });
-//watek-uzytkownik
-db.Watek.belongsTo(db.Uzytkownik, {
-    foreignKey: 'uzytkownik_id',
+//post-watek
+db.Post.belongsTo(db.Watek, {
+    foreignKey: 'watek_id',
     allowNull: false
 });
-db.Uzytkownik.hasMany(db.Watek, {
-    foreignKey: 'uzytkownik_id',
+db.Watek.hasMany(db.Post, {
+    foreignKey: 'watek_id',
     allowNull: false
 });
 //post-uzytkownik
@@ -37,12 +37,12 @@ db.Uzytkownik.hasMany(db.Post, {
     foreignKey: 'uzytkownik_id',
     allowNull: false
 });
-//post-watek
-db.Post.belongsTo(db.Watek, {
+//watek-uzytkownik
+db.Watek.belongsTo(db.Uzytkownik, {
     foreignKey: 'uzytkownik_id',
     allowNull: false
 });
-db.Watek.hasMany(db.Post, {
+db.Uzytkownik.hasMany(db.Watek, {
     foreignKey: 'uzytkownik_id',
     allowNull: false
 });

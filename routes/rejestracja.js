@@ -27,6 +27,7 @@ router.post('/',[
                 msg:"Nazwa zajęta"
             }]
         }).end();
+        return;
     }
     const email=await db.Uzytkownik.findOne({ where: { email: body.email } });
     if (email!==null){
@@ -38,6 +39,7 @@ router.post('/',[
                 msg:"Email zajęty"
             }]
         }).end();
+        return;
     }
     const login=await db.Uzytkownik.findOne({ where: { email: body.login } });
     if (login!==null){
@@ -49,6 +51,7 @@ router.post('/',[
                 msg:"Login zajęty"
             }]
         }).end();
+        return;
     }
     const salt = bcrypt.genSaltSync(8);
     const pwd = bcrypt.hashSync(body.haslo, salt);
@@ -61,8 +64,9 @@ router.post('/',[
         res.json({
             success: true,
             id: User.id,
-            msg: "Pomyślnie dodano użytkownika"
-        }).redirect('/loguj');
+            msg: "Pomyślnie dodano użytkownika",
+            redirectTo: "/loguj"
+        });
     });
 }
 );

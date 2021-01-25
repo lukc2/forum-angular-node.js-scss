@@ -25,6 +25,7 @@ router.post('/', [
                 msg: "Nie istnieje taki użytkownk"
             }]
         }).end();
+        return;
     }
     let User = await db.Uzytkownik.findOne(
         {
@@ -38,8 +39,9 @@ router.post('/', [
             success: true,
             userId: req.session.userId,
             msg: "Pomyślnie zalogowano użytkownika",
-            redirect: "/loguj"
-        });
+            redirectTo: "/"
+        }).end();
+        return;
 
     } else {
         res.json({
@@ -48,7 +50,8 @@ router.post('/', [
                 param: "haslo",
                 msg: "Nie poprawne hasło"
             }]
-        });
+        }).end();
+        return;
     }
 }
 );
