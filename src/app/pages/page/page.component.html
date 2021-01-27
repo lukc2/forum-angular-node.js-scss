@@ -1,0 +1,65 @@
+
+
+<div class="col-md-12">
+  <div class="card">
+    <div class="card-header ">
+      <h2 class="card-title">{{post["Name"]}}</h2>
+      <p class="card-category">{{post["Category"]}}</p>
+    </div>
+    <div class="card-body ">
+
+      <div class="content-container">
+        <div *ngIf="post['Content_url'].includes(['jpg'])">
+          <a href="{{post['Content_url']}}">
+          <img class="img" src="{{post['Content_url']}}">
+          </a>
+        </div>
+        <div *ngIf="post['Content_url'].includes(['youtube'])">
+          <iframe class="video" src="https://www.youtube.com/embed/5qap5aO4i9A" frameborder="0" allowfullscreen></iframe>
+
+        </div>
+
+      </div>
+
+      <p class="content-text">
+        {{post["Content"]}}
+      </p>
+
+    </div>
+    <div class="card-footer ">
+      {{post["Author"]}}
+      <hr>
+      <div class="stats">
+        <i class="fa fa-calendar"></i> {{post["Date"]}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-8" (click)="logCheck()">
+  <form class="form-control" >
+    <textarea *ngIf="!isLogged"[attr.disabled]="true" maxlength="500" class="comment" name="body" required="true"></textarea>
+
+    <button *ngIf="!isLogged"[attr.disabled]="true" class="btn" type="submit">Comment</button>
+    <b style="margin-left: 30px" *ngIf="!isLogged">You have to log in to comment!</b>
+  </form>
+</div><br>
+<ng-template ngFor let-item [ngForOf]="comments">
+
+<div class="row">
+  <div class="col-md-8">
+    <div class="card">
+    <div class="card-body ">
+      {{item["Content"]}}
+    </div>
+    <div class="card-footer comment">
+
+      <hr>
+      <div class="stats author">
+        {{item["Author"]}} <i class="fa fa-calendar"></i> {{item["Date"]}}
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+</ng-template>
