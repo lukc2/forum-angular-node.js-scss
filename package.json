@@ -12,7 +12,7 @@
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
     "heroku-postbuild": "ng build --prod"
   },
-    "repository": {
+  "repository": {
     "type": "git",
     "url": "git+https://github.com/lukc2/CwiekProjektZaliczeniowy.git"
   },
@@ -64,7 +64,6 @@
     "express-validator": "^6.9.2",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3"
-    
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.1100.7",
