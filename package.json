@@ -1,0 +1,35 @@
+{
+  "name": "cwiekprojektzaliczeniowy",
+  "version": "1.0.0",
+  "description": "Projekt zaliczeniowy JS",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd client && npm run build",
+    "install-client": "cd client && npm install",
+    "heroku-postbuild": "npm run install-client && npm run build",
+    "start": "node server.js",
+    "client": "cd client && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lukc2/CwiekProjektZaliczeniowy.git"
+  },
+  "author": "Łukasz,Andrzej,Sebastian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lukc2/CwiekProjektZaliczeniowy/issues"
+  },
+  "homepage": "https://github.com/lukc2/CwiekProjektZaliczeniowy#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "connect-session-sequelize": "^7.1.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "express-validator": "^6.9.2",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.4.0"
+  }
+}
