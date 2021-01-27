@@ -1,7 +1,7 @@
 {
-  "name": "forum-project",
-  "version": "2.2.0",
-  "license": "MIT",
+  "name": "cwiekprojektzaliczeniowy",
+  "version": "1.0.0",
+  "description": "Projekt zaliczeniowy JS",
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
@@ -12,6 +12,16 @@
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
     "heroku-postbuild": "ng build --prod"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lukc2/CwiekProjektZaliczeniowy.git"
+  },
+  "author": "Łukasz,Andrzej,Sebastian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lukc2/CwiekProjektZaliczeniowy/issues"
+  },
+  "homepage": "https://github.com/lukc2/CwiekProjektZaliczeniowy#readme",
   "private": true,
   "dependencies": {
     "@angular/animations": "11.0.9",
@@ -27,22 +37,31 @@
     "@angular/platform-browser": "11.0.9",
     "@angular/platform-browser-dynamic": "11.0.9",
     "@angular/router": "11.0.9",
+    "@full-fledged/alerts": "^11.0.0",
     "@ng-bootstrap/ng-bootstrap": "9.0.0",
     "@ngui/map": "0.30.3",
     "@types/googlemaps": "3.39.14",
     "arrive": "2.4.1",
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
     "bootstrap": "4.5.2",
     "bootstrap-notify": "3.1.3",
     "chart.js": "2.9.3",
     "chartist": "0.11.4",
+    "connect-session-sequelize": "^7.1.0",
     "core-js": "3.6.5",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "express-validator": "^6.9.2",
     "jquery": "3.5.1",
     "moment": "2.29.1",
     "ngx-embedded-media": "^10.1.3",
     "ngx-toastr": "13.1.0",
     "path": "^0.12.7",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
     "rxjs": "6.6.3",
+    "sequelize": "^6.4.0",
     "tslib": "^2.0.0",
     "typescript": "4.0.3",
     "zone.js": "0.11.1"

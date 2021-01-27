@@ -57,19 +57,15 @@ export class NavbarComponent implements OnInit {
   }
 
   logIn() {
-    window.location.href = '#/login';
+    window.location.href = '#/loguj';
   }
 
   register() {
-    window.location.href = ('#/register');
+    window.location.href = ('#/rejestracja');
   }
 
   logOut() {
-    window.location.href = ('#/logout');
-  }
-
-  profile() {
-    window.location.href = '#/profile';
+    window.location.href = ('#/wyloguj');
   }
 
   sidebarOpen() {

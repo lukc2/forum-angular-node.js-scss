@@ -1,56 +1,41 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-
+import {FormGroup} from '@angular/forms';
 
 const responseArray =  '' +
   '[{\"Name\":\"Title of post\",' +
   ' \"Content\":\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\",' +
+  ' \"Category\":\"Category\",' +
   ' \"Author\":\"Maniek\",' +
   ' \"id\":\"0\",' +
-  ' \"Date\":\"18.01.2021\"},' +
-  ' {\"Name\":\"Title of post 2\",' +
+  ' \"Date\":\"18.01.2021\",' +
+  ' \"Content_url\":\"https://www.youtube.com/watch?v=5qap5aO4i9A\"}]';
+
+const commentsArray =  '' +
+  '[{\"Name\":\"Title of post\",' +
   ' \"Content\":\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\",' +
   ' \"Author\":\"Maniek\",' +
-  ' \"id\":\"1\",' +
+  ' \"id\":\"0\",' +
   ' \"Date\":\"18.01.2021\"}]';
-const posts = JSON.parse(responseArray)
+const post = JSON.parse(responseArray);
+const comments = JSON.parse(commentsArray);
 
 @Component({
-    selector: 'app-computers-cmp',
-    moduleId: module.id,
-    templateUrl: 'computers.component.html'
+  selector: 'app-thread-cmp',
+  moduleId: module.id,
+  templateUrl: 'thread.component.html'
 })
-export class ComputersComponent implements OnInit {
+
+export class ThreadComponent implements OnInit {
+  post = post[0];
+  comments = comments;
   @Input() isLogged: boolean;
 
-  posts = posts
-  form: FormGroup;
-  loading = false;
-  submitted = false;
-
- logCheck() {
+  logCheck() {
     if (!this.isLogged) {
-      window.location.href = ('#/login')
+      window.location.href = ('#/loguj')
     }
   }
-  constructor(
-    private formBuilder: FormBuilder,
-  ) { }
 
-  ngOnInit() {
-    this.form = this.formBuilder.group({
-      title: ['', Validators.required]
-    });
-  }
-  get f() { return this.form.controls; }
-
-  onSubmit() {
-    this.submitted = true;
-    if (this.form.invalid) {
-      return;
-    }
-
-    this.loading = true;
+  ngOnInit(): void {
   }
 }

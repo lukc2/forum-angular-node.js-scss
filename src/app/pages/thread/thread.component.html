@@ -35,19 +35,18 @@
     </div>
   </div>
 </div>
-
-<div class="col-md-8" (click)="logCheck()">
+<div class="col-md-11 align-middle" (click)="logCheck()">
   <form class="form-control" >
-    <textarea *ngIf="!isLogged"[attr.disabled]="true" maxlength="500" class="comment" name="body" required="true"></textarea>
+    <textarea rows="5 "*ngIf="!isLogged"[attr.disabled]="true" maxlength="2000" class="comment" name="body" required="true"></textarea>
 
-    <button *ngIf="!isLogged"[attr.disabled]="true" class="btn" type="submit">Comment</button>
-    <b style="margin-left: 30px" *ngIf="!isLogged">You have to log in to comment!</b>
+    <button *ngIf="!isLogged"[attr.disabled]="true" class="btn" type="submit">Postuj</button>
+    <b style="margin-left: 30px" *ngIf="!isLogged">Musisz się zalogować by postować!</b>
   </form>
 </div><br>
 <ng-template ngFor let-item [ngForOf]="comments">
 
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-11">
     <div class="card">
     <div class="card-body ">
       {{item["Content"]}}

@@ -1,13 +1,16 @@
 <div class="wrapper">
+  <ff-alerts></ff-alerts>
     <div class="sidebar" data-color="white" data-active-color="danger">
         <app-sidebar-cmp></app-sidebar-cmp>
     </div>
     <div class="main-panel">
         <app-navbar-cmp></app-navbar-cmp>
+
         <div class="content">
             <router-outlet></router-outlet>
         </div>
         <footer-cmp></footer-cmp>
     </div>
 </div>
-<fixedplugin-cmp></fixedplugin-cmp>
+
+<app-fixedplugin-cmp></app-fixedplugin-cmp>
