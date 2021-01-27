@@ -1,7 +1,7 @@
 {
-  "name": "forum-project",
-  "version": "2.2.0",
-  "license": "MIT",
+  "name": "cwiekprojektzaliczeniowy",
+  "version": "1.0.0",
+  "description": "Projekt zaliczeniowy JS",
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
@@ -12,6 +12,16 @@
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
     "heroku-postbuild": "ng build --prod"
   },
+    "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lukc2/CwiekProjektZaliczeniowy.git"
+  },
+  "author": "Łukasz,Andrzej,Sebastian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lukc2/CwiekProjektZaliczeniowy/issues"
+  },
+  "homepage": "https://github.com/lukc2/CwiekProjektZaliczeniowy#readme",
   "private": true,
   "dependencies": {
     "@angular/animations": "11.0.9",
@@ -45,7 +55,16 @@
     "rxjs": "6.6.3",
     "tslib": "^2.0.0",
     "typescript": "4.0.3",
-    "zone.js": "0.11.1"
+    "zone.js": "0.11.1",
+    "sequelize": "^6.4.0",
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "connect-session-sequelize": "^7.1.0",
+    "express-session": "^1.17.1",
+    "express-validator": "^6.9.2",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
+    
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.1100.7",
