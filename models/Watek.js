@@ -1,10 +1,12 @@
 module.exports=module.exports=(sequelize,DataTypes)=>{
     const Watek=sequelize.define('watek',{
         kategoria_id:{
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            allowNull:false
         },
         uzytkownik_id:{
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            allowNull:false
         },
         nazwa:{
             type: DataTypes.TEXT,

@@ -13,6 +13,7 @@ router.post('/', [
             success: false,
             errors: errors
         }).end();
+        return;
     }
     let body = req.body;
     const exists = await db.Uzytkownik.findOne({ where: { nazwa: body.login } });
@@ -32,6 +33,12 @@ router.post('/', [
             where: {
                 nazwa: body.login
             }
+        }).catch(err=>{
+            res.json({
+                success:false,
+                errors:err
+            }).end();
+            return;
         });
     if (bcrypt.compareSync(body.haslo, User.haslo)) {
         req.session.userId = User.id;
@@ -41,7 +48,6 @@ router.post('/', [
             msg: "Pomyślnie zalogowano użytkownika",
             redirectTo: "/"
         }).end();
-        return;
 
     } else {
         res.json({
@@ -51,7 +57,6 @@ router.post('/', [
                 msg: "Nie poprawne hasło"
             }]
         }).end();
-        return;
     }
 }
 );

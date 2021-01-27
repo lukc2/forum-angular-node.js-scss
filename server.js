@@ -1,6 +1,5 @@
 const express = require("express");
 const path = require('path');
-require('dotenv').config();//dev only
 const bodyParser = require('body-parser');
 const expressSession = require('express-session');
 const expressValidator = require('express-validator');
@@ -32,10 +31,6 @@ app.use(expressSession({
 }))
 sessionStore.sync();
 
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(publicFolderPath))//plik statyczny
-}
-
 //routes
 app.use('/kategoria',middlewares.auth ,require('./routes/kategoria'));
 app.use('/rejestracja',middlewares.loggedIn, require('./routes/rejestracja'));
@@ -61,11 +56,13 @@ app.get("/",middlewares.auth,async (req,res)=>{
         })
     })
 });
-//kategoria :id;:id/dodaj_watek; :id/watek/:watekid
 
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(publicFolderPath))//plik statyczny
+    app.get('*',(req,res)=>{
+        res.sendFile(path.join(publicFolderPath,"index.html"));//zapobieganie 404
+    });
+}
 
 app.listen(PORT, console.log(`http://${HOST}:${PORT}/`));
-
-//TODO 
-//https://bezkoder.com/angular-10-node-express-postgresql/
-//Dostosować dane do ścieżek

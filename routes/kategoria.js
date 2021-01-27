@@ -25,6 +25,11 @@ router.get('/:kategoriaId', (req, res) => {
         order: [[db.Watek, "data_modyfikacji", 'DESC']]
     }).then(data => {
         res.json(data);
+    }).catch(err => {
+        res.json({
+            success: false,
+            errors: err
+        })
     })
 });
 router.post("/:kategoriaId/dodaj_watek", [
@@ -57,13 +62,24 @@ router.post("/:kategoriaId/dodaj_watek", [
                 post_id: post.id,
                 msg: "Pomyślnie dodano wątek"
             })
+        }).catch(err => {
+            res.json({
+                success: false,
+                errors: err
+            })
+            return;
+        });
+    }).catch(err => {
+        res.json({
+            success: false,
+            errors: err
         })
     });
 });
-router.get("/:kategoriaId/watek/:watekId", async (req, res) => {
+router.get("/:kategoriaId/watek/:watekId", (req, res) => {
     let kat_id = req.params.kategoriaId;
     let wat_id = req.params.watekId;
-    await db.Watek.findAll({
+    db.Watek.findAll({
         include: [
             {
                 model: db.Post,
@@ -77,32 +93,47 @@ router.get("/:kategoriaId/watek/:watekId", async (req, res) => {
         },
         order: [[db.Post, "id", 'ASC']]
 
-    }).then(data => res.json(data));
+    }).then(data => res.json(data))
+        .catch(err => {
+            res.json({
+                success: false,
+                errors: err
+            })
+        });
 });
 router.post("/:kategoriaId/watek/:watekId",
     check("tresc").isLength({ min: 5 }).withMessage("Zakrótka treść posta"),
     async (req, res) => {
         let trescPosta = req.body.tresc;
         let watId = req.params.watekId;
-        db.Post.create({
+        const post = await db.Post.create({
             watek_id: watId,
             uzytkownik_id: req.session.userId,
             tresc: trescPosta
-        }).then(data => res.json({
-            success: true,
-            id: data.id,
-            msg: "Utworzono post"
-        })).then(post =>
-            db.Watek.update(
-                { data_modyfikacji: db.Sequelize.NOW },
-                {
-                    where: {
-                        id: post.watek_id
-                    }
-                })
-        ).catch(err => res.json({
-            success: false,
-            msg: err
-        }))
+        }).catch(err => {
+            res.json({
+                success: false,
+                errors: err
+            }).end();
+            return;
+        });
+        db.Watek.update(
+            { data_modyfikacji: db.sequelize.literal('CURRENT_TIMESTAMP') },
+            {
+                where: {
+                    id: post.watek_id
+                }
+            }).then(() => {
+                res.json({
+                    success: true,
+                    id: post.id,
+                    msg: "Utworzono post"
+                });
+            }).catch(err => {
+                res.json({
+                    success: false,
+                    errors: err
+                }).end();
+            });
     });
 module.exports = router;

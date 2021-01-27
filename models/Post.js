@@ -1,10 +1,12 @@
 module.exports=module.exports=(sequelize,DataTypes)=>{
     const Post=sequelize.define('post',{
         watek_id:{
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            allowNull: false
         },
         uzytkownik_id:{
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            allowNull: false
         },
         tresc:{
             type: DataTypes.TEXT,
