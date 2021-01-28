@@ -23,12 +23,5 @@ const posts = JSON.parse(responseArray)
 
 export class DashboardComponent  {
   posts = posts;
-  constructor(public alertService: AlertService) {}
 
-  showAlerts(): void {
-    this.alertService.info('this is an info alert');
-    this.alertService.danger('this is a danger alert');
-    this.alertService.success('this is a success alert');
-    this.alertService.warning('this is a warning alert');
-  }
 }

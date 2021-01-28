@@ -3,18 +3,18 @@
 <div class="col-md-12">
   <div class="card">
     <div class="card-header ">
-      <h2 class="card-title">{{post["Name"]}}</h2>
-      <p class="card-category">{{post["Category"]}}</p>
+      <h2 class="card-title">{{content["Name"]}}</h2>
+      <p class="card-category">{{content["Category"]}}</p>
     </div>
     <div class="card-body ">
 
       <div class="content-container">
-        <div *ngIf="post['Content_url'].includes(['jpg'])">
-          <a href="{{post['Content_url']}}">
-          <img class="img" src="{{post['Content_url']}}">
+        <div *ngIf="content['Content_url'].includes(['jpg'])">
+          <a href="{{content['Content_url']}}">
+          <img class="img" src="{{content['Content_url']}}">
           </a>
         </div>
-        <div *ngIf="post['Content_url'].includes(['youtube'])">
+        <div *ngIf="content['Content_url'].includes(['youtube'])">
           <iframe class="video" src="https://www.youtube.com/embed/5qap5aO4i9A" frameborder="0" allowfullscreen></iframe>
 
         </div>
@@ -22,25 +22,34 @@
       </div>
 
       <p class="content-text">
-        {{post["Content"]}}
+        {{content["Content"]}}
       </p>
 
     </div>
     <div class="card-footer ">
-      {{post["Author"]}}
+      {{content["Author"]}}
       <hr>
       <div class="stats">
-        <i class="fa fa-calendar"></i> {{post["Date"]}}
+        <i class="fa fa-calendar"></i> {{content["Date"]}}
       </div>
     </div>
   </div>
 </div>
-<div class="col-md-11 align-middle" (click)="logCheck()">
-  <form class="form-control" >
-    <textarea rows="5 "*ngIf="!isLogged"[attr.disabled]="true" maxlength="2000" class="comment" name="body" required="true"></textarea>
-
-    <button *ngIf="!isLogged"[attr.disabled]="true" class="btn" type="submit">Postuj</button>
-    <b style="margin-left: 30px" *ngIf="!isLogged">Musisz się zalogować by postować!</b>
+<div class="col-md-11 align-middle">
+  <form class="form-control"  [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+    <div class="form-group">
+      <label for="body">Treść</label>
+      <textarea class="comment form-control" maxlength="2000" required="true" id="body" formControlName="body" [ngClass]="{ 'is-invalid': submitted && f.body.errors }"></textarea>
+      <div *ngIf="submitted && f.body.errors" class="invalid-feedback">
+        <div *ngIf="f.body.errors.required">Treść jest wymagana!</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <button [disabled]="loading" class="btn btn-primary">
+        <span *ngIf="loading" class=" spinner-border spinner-border-sm mr-1"></span>
+        Postuj
+      </button>
+    </div>
   </form>
 </div><br>
 <ng-template ngFor let-item [ngForOf]="comments">

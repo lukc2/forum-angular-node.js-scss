@@ -1,28 +1,29 @@
 <div class="card-wrapper">
 
-  <button class="btn access-card" (click)="logCheck()">Dodaj nowy</button>
+  <button class="btn access-card" (click)="addThread()">Dodaj nowy</button>
 
 </div>
 
 <br>
 
-<ng-template ngFor let-item [ngForOf]="posts">
-  <a class=" text-left" href="#/kategoria/{{item['kategoria_id']}}/watek/{{item['id']}}">
+<ng-template ngFor let-item [ngForOf]="posts['wateks']">
+  <a class=" text-left " href="#/kategoria/{{posts['id']}}/watek/{{item['id']}}">
     <div class="row ">
       <div class="col-md-12">
-        <div class="card ">
+        <div class="card">
           <div class="card-header ">
-            <h2 class="card-title">{{item["Name"]}}</h2>
+            <h2 class="card-title">{{item["nazwa"]}}</h2>
             <!--        <p class="card-category">{{item["Category"]}}</p>-->
           </div>
-          <div class="card-body pb-0 ">
-            <div *ngIf="(item['Content']).length>300">{{item["Content"]|slice:0:300}}...</div>
-            <div *ngIf="(item['Content']).length<=300">{{item["Content"]}}</div>
-          </div>
+
+<!--          <div class="card-body pb-0 ">-->
+<!--            <div *ngIf="(item['Content']).length>300">{{item["Content"]|slice:0:300}}...</div>-->
+<!--            <div *ngIf="(item['Content']).length<=300">{{item["Content"]}}</div>-->
+<!--          </div>-->
             <div class="card-footer ">
-             <div class="text-right pt-0 pb-0"> ~{{item["Author"]}}</div>
+             <div class="text-right pt-0 pb-0"> ~{{item['uzytkownik']['nazwa']}}</div>
               <hr>
-              <i class="fa fa-calendar col-md-11">  {{item["Date"]}}</i>
+              <i class="fa fa-calendar col-md-11">  {{item['data_modyfikacji']}}</i>
               <a class="stats col-md-1">
               </a>
           </div>

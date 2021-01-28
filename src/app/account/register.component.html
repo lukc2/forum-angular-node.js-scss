@@ -2,7 +2,7 @@
 <div class="access-card">
     <h4 class="card-header">Register</h4>
     <div class="card-body">
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
             <div class="form-group">
                 <label for="name">Nazwa użytkownika</label>
                 <input type="text" id="name" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />

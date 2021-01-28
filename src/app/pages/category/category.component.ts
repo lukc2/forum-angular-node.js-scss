@@ -1,14 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
-const responseArray =  '' +
-  '[{\"Name\":\"Title of post\",' +
-  ' \"Content\":\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\",' +
-  ' \"Author\":\"Maniek\",' +
-  ' \"id\":\"0\",' +
-  ' \"kategoria_id\":\"0\",' +
-  ' \"Date\":\"18.01.2021\"}]';
-const posts = JSON.parse(responseArray)
 
 @Component({
   moduleId: module.id,
@@ -17,16 +12,24 @@ const posts = JSON.parse(responseArray)
 })
 
 export class CategoryComponent implements OnInit {
-  @Input() isLogged: boolean;
-
-  posts = posts
-
-  logCheck() {
-    if (!this.isLogged) {
-      window.location.href = ('#/loguj')
-    }
+  http: HttpClient;
+  posts: any;
+  responseArray: any;
+  href: string;
+  constructor(private router: Router) {}
+  addThread() {
+      window.location.href = ('#' + this.href + '/dodaj_watek')
+  }
+  sendPostRequest(data: Object, url: string): Observable<Object> {
+    return this.http.post(this.href, data);
+  }
+  sendGetRequest() {
+    return this.http.get(this.href);
   }
 
   ngOnInit() {
+    this.href = this.router.url;
+    this.responseArray = this.sendGetRequest();
+    this.posts = JSON.parse(this.responseArray);
   }
 }

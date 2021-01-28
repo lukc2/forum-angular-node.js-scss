@@ -7,14 +7,14 @@ import { RegisterComponent } from '../../account/register.component';
 import {PostComponent} from '../../pages/post/post.component';
 import {CategoryComponent} from '../../pages/category/category.component';
 
-const kategoria_id = [0, 1, 2];
-const watek_id = [0, 1, 2];
+const kategoria_id = 0;
+const watek_id = 0;
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'loguj',          component: LoginComponent },
     { path: 'rejestracja',       component: RegisterComponent },
-    { path: 'kategoria/::kategoria_id/post',       component: PostComponent },
+    { path: 'kategoria/::kategoria_id/dodaj_watek',       component: PostComponent },
     { path: 'kategoria/::kategoria_id/watek/::watek_id',      component: ThreadComponent},
     { path: 'kategoria/::kategoria_id',      component: CategoryComponent},
 ];

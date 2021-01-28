@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { EmbeddedMediaModule } from 'ngx-embedded-media';
 
 import { AdminLayoutRoutes } from './admin-layout.routing';
 
@@ -25,7 +24,6 @@ import {AlertModule, AlertService} from '@full-fledged/alerts';
     FormsModule,
     NgbModule,
     ReactiveFormsModule,
-    [EmbeddedMediaModule.forRoot()],
     AlertModule
   ],
   declarations: [
@@ -34,7 +32,7 @@ import {AlertModule, AlertService} from '@full-fledged/alerts';
     LoginComponent,
     RegisterComponent,
     CategoryComponent,
-    PostComponent
+    PostComponent,
   ]
 })
 
