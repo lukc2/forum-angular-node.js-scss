@@ -42,3 +42,8 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+.idea/modules.xml
+.idea/inspectionProfiles/Project_Default.xml
+.idea/frontend.iml
+.idea/codeStyles/Project.xml
+.idea/codeStyles/codeStyleConfig.xml
