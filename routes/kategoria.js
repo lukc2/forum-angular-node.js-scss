@@ -13,7 +13,7 @@ router.get('/:kategoriaId', (req, res) => {
     db.Kategoria.findAll({
         include: [{
             model: db.Watek,
-            attributes: ["nazwa"],
+            attributes: ["nazwa","data_modyfikacji"],
             include: [{
                 model: db.Uzytkownik,
                 attributes: ["nazwa"]
