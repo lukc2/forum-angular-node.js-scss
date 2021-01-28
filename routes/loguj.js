@@ -41,6 +41,7 @@ router.post('/', [
             return;
         });
     if (bcrypt.compareSync(body.haslo, User.haslo)) {
+        req.session.isLoggedIn=true;
         req.session.userId = User.id;
         res.json({
             success: true,
