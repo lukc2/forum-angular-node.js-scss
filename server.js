@@ -32,11 +32,11 @@ app.use(expressSession({
 sessionStore.sync();
 
 //routes
-app.use('/kategoria',middlewares.auth ,require('./routes/kategoria'));
-app.use('/rejestracja',middlewares.loggedIn, require('./routes/rejestracja'));
-app.use('/loguj',middlewares.loggedIn, require('./routes/loguj'));
-app.use('/wyloguj',middlewares.auth, require('./routes/wyloguj'));
-app.get("/",middlewares.auth,async (req,res)=>{
+app.use('/#/kategoria',middlewares.auth ,require('./routes/kategoria'));
+app.use('/#/rejestracja',middlewares.loggedIn, require('./routes/rejestracja'));
+app.use('/#/loguj',middlewares.loggedIn, require('./routes/loguj'));
+app.use('/#/wyloguj',middlewares.auth, require('./routes/wyloguj'));
+app.get("/#",middlewares.auth,async (req,res)=>{
   await db.Kategoria.findAll({
     include:[{
       model:db.Watek,
