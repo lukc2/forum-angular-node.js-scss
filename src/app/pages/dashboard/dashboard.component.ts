@@ -1,4 +1,6 @@
 import { Component} from '@angular/core';
+import {AlertService} from '@full-fledged/alerts';
+
 
 const responseArray =  '' +
   '[{\"Name\":\"Title of post\",' +
@@ -21,4 +23,5 @@ const posts = JSON.parse(responseArray)
 
 export class DashboardComponent  {
   posts = posts;
+
 }

@@ -18,30 +18,29 @@
       <span class="navbar-toggler-bar navbar-kebab"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="collapseExample" [ngbCollapse]="isCollapsed">
-      <form>
-        <div class="input-group no-border">
-          <input type="text" value="" class="form-control" placeholder="Search...">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <i class="nc-icon nc-zoom-split"></i>
-            </div>
-          </div>
-        </div>
-      </form>
+<!--      <form>-->
+<!--        <div class="input-group no-border">-->
+<!--          <input type="text" value="" class="form-control" placeholder="Wyszukaj..."-->
+<!--          <div class="input-group-append">-->
+<!--            <div class="input-group-text">-->
+<!--              <i class="nc-icon nc-zoom-split"></i>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </form>-->
       <ul class="navbar-nav">
         <li class="nav-item btn-rotate" ngbDropdown placement="bottom-left">
           <a class="nav-link" ngbDropdownToggle id="navbarDropdownMenuLink" >
-            <a *ngIf="isLogged" (click)="profile()">{{'User'}}</a>
             <i class="nc-icon nc-single-02"></i>
           </a>
           <div ngbDropdownMenu aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu dropdown-menu-right">
             <div *ngIf="isLogged; else elseBlock">
-              <a ngbDropdownItem (click)="logOut()">Log out</a>
-              <a ngbDropdownItem (click)="profile()">Profile</a>
+              <a ngbDropdownItem (click)="logOut()">Wyloguj się</a>
+<!--              <a ngbDropdownItem (click)="profile()">Profile</a>-->
             </div>
             <ng-template #elseBlock>
-              <a ngbDropdownItem (click)="logIn()">Log in</a>
-              <a ngbDropdownItem (click)="register()">Register</a>
+              <a ngbDropdownItem (click)="logIn()">Zaloguj się</a>
+              <a ngbDropdownItem (click)="register()">Zarejestruj się</a>
             </ng-template>
 
             </div>

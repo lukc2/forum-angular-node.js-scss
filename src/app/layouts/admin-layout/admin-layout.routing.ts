@@ -1,22 +1,21 @@
 import { Routes } from '@angular/router';
 
 import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
-import { PageComponent } from '../../pages/page/page.component';
-import { ComputersComponent } from '../../pages/computers/computers.component';
-import { MusicComponent } from '../../pages/music/music.component';
-import { NewsComponent } from '../../pages/news/news.component';
+import { ThreadComponent } from '../../pages/thread/thread.component';
 import { LoginComponent } from '../../account/login.component';
 import { RegisterComponent } from '../../account/register.component';
-import { ProfileComponent } from '../../account/profile.component';
+import {PostComponent} from '../../pages/post/post.component';
+import {CategoryComponent} from '../../pages/category/category.component';
+
+const kategoria_id = 0;
+const watek_id = 0;
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
-    { path: 'computers',      component: ComputersComponent },
-    { path: 'music',          component: MusicComponent },
-    { path: 'news',           component: NewsComponent },
-    { path: 'page',           component: PageComponent },
-    { path: 'login',          component: LoginComponent },
-    { path: 'register',       component: RegisterComponent },
-    { path: 'profile',        component: ProfileComponent },
+    { path: 'loguj',          component: LoginComponent },
+    { path: 'rejestracja',       component: RegisterComponent },
+    { path: 'kategoria/::kategoria_id/dodaj_watek',       component: PostComponent },
+    { path: 'kategoria/::kategoria_id/watek/::watek_id',      component: ThreadComponent},
+    { path: 'kategoria/::kategoria_id',      component: CategoryComponent},
 ];
 

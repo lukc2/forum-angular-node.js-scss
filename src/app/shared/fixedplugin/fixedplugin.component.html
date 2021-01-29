@@ -4,7 +4,7 @@
           <i class="fa fa-cog fa-2x"> </i>
         </a>
         <ul class="" ngbDropdownMenu aria-labelledby="dropdownConfig">
-            <li class="header-title">Sidebar Background</li>
+            <li class="header-title">Kolor tła paska/li>
             <li class="adjustments-line text-center">
                 <a href="javascript:void(0)" class="switch-trigger background-color">
                     <span class="badge filter badge-light active" [ngClass]="{'active':sidebarColor==='white'}" (click)="changeSidebarColor('white')"></span>
@@ -12,7 +12,7 @@
                 </a>
             </li>
 
-	          <li class="header-title">Sidebar Active Color</li>
+	          <li class="header-title">Kolor zawartości paska</li>
             <li class="adjustments-line text-center">
                 <a href="javascript:void(0)" class="switch-trigger active-color">
                     <span class="badge filter badge-primary" [ngClass]="{'active':sidebarActiveColor==='primary'}" (click)="changeSidebarActiveColor('primary')"></span>
@@ -22,6 +22,13 @@
                     <span class="badge filter badge-danger active" [ngClass]="{'active':sidebarActiveColor==='danger'}" (click)="changeSidebarActiveColor('danger')"></span>
                 </a>
             </li>
+          <li class="header-title">Kolor tła strony</li>
+          <li class="adjustments-line text-center">
+            <a href="javascript:void(0)" class="switch-trigger active-color">
+              <span class="badge filter badge-light" [ngClass]="{'active':pageActiveColor==='primary'}" (click)="changePageColor('white')"></span>
+              <span class="badge filter badge-dark" [ngClass]="{'active':pageActiveColor==='info'}" (click)="changePageColor('#202020')"></span>
+            </a>
+          </li>
 
         </ul>
     </div>

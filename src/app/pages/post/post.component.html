@@ -1,0 +1,25 @@
+
+<form [formGroup]="form" class="form-control" (ngSubmit)="onSubmit(form.value)">
+  <p style="font-size: 30px">Dodaj wątek</p>
+  <div class="form-group">
+    <label for="title">Tytuł</label><br>
+    <input size="80%" type="text" name="title" id="title" required="true">
+    <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+      <div *ngIf="f.title.errors.required">Tytuł wymagany!</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="content">Treść</label><br>
+    <textarea maxlength="2000" id="content" name="content" class="content-input" ></textarea>
+  </div>
+  <div class="form-group">
+    <label for="content_url">Link do zawartości: </label>
+    <input size="50%" type="url" name="content_url" id="content_url">
+  </div>
+  <div class="form-group">
+    <button [disabled]="loading" class="btn btn-primary">
+      <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+      Postuj
+    </button>
+  </div>
+</form>

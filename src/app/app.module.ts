@@ -1,7 +1,6 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ToastrModule } from 'ngx-toastr';
 import { MatDialogModule } from '@angular/material/dialog';
 
 import { SidebarModule } from './sidebar/sidebar.module';
@@ -13,6 +12,8 @@ import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routing';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import {BrowserModule} from '@angular/platform-browser';
+import {AlertModule} from '@full-fledged/alerts';
 
 
 @NgModule({
@@ -22,16 +23,17 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
   ],
   imports: [
     BrowserAnimationsModule,
+    BrowserModule,
     MatDialogModule,
+    AlertModule.forRoot({maxMessages: 5, timeout: 5000, positionY: 'bottom', positionX: 'right'}),
     RouterModule.forRoot(AppRoutes, {
-    useHash: true,
-    relativeLinkResolution: 'legacy',
-}),
+      useHash: true,
+      relativeLinkResolution: 'legacy',
+    }),
     SidebarModule,
     NavbarModule,
-    ToastrModule.forRoot(),
     FooterModule,
-    FixedPluginModule
+    FixedPluginModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
