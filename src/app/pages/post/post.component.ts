@@ -23,9 +23,9 @@ export class PostComponent implements OnInit {
   href: string;
 
   logCheck() {
-    if (!this.isLogged) {
-      window.location.href = ('#/loguj')
-    }
+    // if (!this.isLogged) {
+    //   window.location.href = ('/loguj')
+    // }
   }
   constructor(
     private formBuilder: FormBuilder,

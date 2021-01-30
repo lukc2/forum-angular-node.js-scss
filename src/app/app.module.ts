@@ -27,7 +27,6 @@ import {AlertModule} from '@full-fledged/alerts';
     MatDialogModule,
     AlertModule.forRoot({maxMessages: 5, timeout: 5000, positionY: 'bottom', positionX: 'right'}),
     RouterModule.forRoot(AppRoutes, {
-      useHash: true,
       relativeLinkResolution: 'legacy',
     }),
     SidebarModule,

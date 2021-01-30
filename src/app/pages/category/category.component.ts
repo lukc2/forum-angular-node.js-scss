@@ -18,7 +18,7 @@ export class CategoryComponent implements OnInit {
   href: string;
   constructor(private router: Router) {}
   addThread() {
-      window.location.href = ('#' + this.href + '/dodaj_watek')
+      window.location.href = ( ""+ this.href + '/dodaj_watek')
   }
   sendPostRequest(data: Object, url: string): Observable<Object> {
     return this.http.post(this.href, data);
