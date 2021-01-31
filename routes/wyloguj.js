@@ -1,21 +1,12 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-router.post('/', (req, res) => {
-	if (req.session.isLoggedIn == null || req.session.isLoggedIn==false) {
-		res.json({
-			success: false,
-			msg: "Sesja nie istnieje",
-			redirectTo: "/loguj"
-		}).end();
+router.get("/", (req, res) => {
+	if (req.session.isLoggedIn == null || req.session.isLoggedIn == false) {
+		res.redirect("/");
 		return;
 	}
-	req.session.destroy((err) => {
-		res.json({
-			success: true,
-			msg: "Pomyślnie wylogowano",
-			redirectTo: "/loguj"
-		});
-	})
-
+	req.session.destroy(() => {
+		res.redirect("/");
+	});
 });
 module.exports = router;
