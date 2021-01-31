@@ -14,7 +14,7 @@ import {ThreadComponent} from '../../pages/thread/thread.component';
 import {CategoryComponent} from '../../pages/category/category.component';
 import {PostComponent} from '../../pages/post/post.component';
 import {AlertModule, AlertService} from '@full-fledged/alerts';
-
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -24,7 +24,8 @@ import {AlertModule, AlertService} from '@full-fledged/alerts';
     FormsModule,
     NgbModule,
     ReactiveFormsModule,
-    AlertModule
+    AlertModule,
+    HttpClientModule
   ],
   declarations: [
     DashboardComponent,

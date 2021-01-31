@@ -19,7 +19,6 @@ export class PostComponent implements OnInit {
   loading = false;
   submitted = false;
   posts: any;
-  responseArray: any;
   href: string;
 
   logCheck() {
@@ -31,17 +30,25 @@ export class PostComponent implements OnInit {
     private formBuilder: FormBuilder,
     public alertService: AlertService,
     private router: Router
-  ) { }
+  ) {
+    this.router.events.subscribe((ev) => {
+
+      if (location.pathname != this.href) {
+        // do something
+        this.href = this.router.url;
+        this.sendGetRequest();
+      }
+    });
+  }
   sendPostRequest(data: Object, url: string): Observable<Object> {
     return this.http.post(this.href, data);
   }
   sendGetRequest() {
-    return this.http.get(this.href);
+    this.http.get(this.href).subscribe((data) => {
+      this.posts = data[0];
+    });
   }
   ngOnInit() {
-    this.href = this.router.url;
-    this.responseArray = this.sendGetRequest();
-    this.posts = JSON.parse(this.responseArray);
     this.form = this.formBuilder.group({
       title: ['', Validators.required, Validators.min(10)]
     });

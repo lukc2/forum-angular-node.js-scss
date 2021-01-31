@@ -3,34 +3,34 @@
 <div class="col-md-12">
   <div class="card">
     <div class="card-header ">
-      <h2 class="card-title">{{content["Name"]}}</h2>
-      <p class="card-category">{{content["Category"]}}</p>
+      <h2 class="card-title">{{request["nazwa"]}}</h2>
+      <p class="card-category">{{getTitle()}}</p>
     </div>
     <div class="card-body ">
 
-      <div class="content-container">
-        <div *ngIf="content['Content_url'].includes(['jpg'])">
-          <a href="{{content['Content_url']}}">
-          <img class="img" src="{{content['Content_url']}}">
-          </a>
-        </div>
-        <div *ngIf="content['Content_url'].includes(['youtube'])">
-          <iframe class="video" src="https://www.youtube.com/embed/5qap5aO4i9A" frameborder="0" allowfullscreen></iframe>
+<!--      <div class="content-container">-->
+<!--        <div *ngIf="posts['Content_url'].includes(['jpg'])">-->
+<!--          <a href="{{posts['Content_url']}}">-->
+<!--          <img class="img" src="{{posts['Content_url']}}" href="{{posts['Content_url']}}">-->
+<!--          </a>-->
+<!--        </div>-->
+<!--        <div *ngIf="posts['Content_url'].includes(['youtube'])">-->
+<!--          <iframe class="video" src="https://www.youtube.com/embed/5qap5aO4i9A" frameborder="0" allowfullscreen></iframe>-->
 
-        </div>
+<!--        </div>-->
 
-      </div>
+<!--      </div>-->
 
-      <p class="content-text">
-        {{content["Content"]}}
-      </p>
+<!--      <p class="content-text">-->
+<!--        {{content["Content"]}}-->
+<!--      </p>-->
 
     </div>
     <div class="card-footer ">
-      {{content["Author"]}}
+      {{request["uzytkownik_id"]}}
       <hr>
       <div class="stats">
-        <i class="fa fa-calendar"></i> {{content["Date"]}}
+        <i class="fa fa-calendar"></i> {{request["Date"]}}
       </div>
     </div>
   </div>
@@ -38,10 +38,10 @@
 <div class="col-md-11 align-middle">
   <form class="form-control"  [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
     <div class="form-group">
-      <label for="body">Treść</label>
-      <textarea class="comment form-control" maxlength="2000" required="true" id="body" formControlName="body" [ngClass]="{ 'is-invalid': submitted && f.body.errors }"></textarea>
-      <div *ngIf="submitted && f.body.errors" class="invalid-feedback">
-        <div *ngIf="f.body.errors.required">Treść jest wymagana!</div>
+      <label for="tresc">Treść</label>
+      <textarea class="comment form-control" maxlength="2000" required="true" id="tresc" formControlName="tresc" [ngClass]="{ 'is-invalid': submitted && f.tresc.errors }"></textarea>
+      <div *ngIf="submitted && f.tresc.errors" class="invalid-feedback">
+        <div *ngIf="f.tresc.errors.required">Treść jest wymagana!</div>
       </div>
     </div>
     <div class="form-group">
@@ -52,19 +52,19 @@
     </div>
   </form>
 </div><br>
-<ng-template ngFor let-item [ngForOf]="comments">
+<ng-template ngFor let-item [ngForOf]="this.request['posts']">
 
 <div class="row">
   <div class="col-md-11">
     <div class="card">
     <div class="card-body ">
-      {{item["Content"]}}
+      {{item["tresc"]}}
     </div>
     <div class="card-footer comment">
 
       <hr>
       <div class="stats author">
-        {{item["Author"]}} <i class="fa fa-calendar"></i> {{item["Date"]}}
+        {{item["uzytkownik"]['nazwa']}} <i class="fa fa-calendar"></i> {{this.pipe.transform(item["data_wyslania"], 'd.M.y hh:mm:ss ')}}
       </div>
     </div>
     </div>

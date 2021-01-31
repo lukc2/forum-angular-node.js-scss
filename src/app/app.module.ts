@@ -12,8 +12,9 @@ import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routing';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import {BrowserModule} from '@angular/platform-browser';
+
 import {AlertModule} from '@full-fledged/alerts';
+
 
 
 @NgModule({
@@ -23,7 +24,6 @@ import {AlertModule} from '@full-fledged/alerts';
   ],
   imports: [
     BrowserAnimationsModule,
-    BrowserModule,
     MatDialogModule,
     AlertModule.forRoot({maxMessages: 5, timeout: 5000, positionY: 'bottom', positionX: 'right'}),
     RouterModule.forRoot(AppRoutes, {

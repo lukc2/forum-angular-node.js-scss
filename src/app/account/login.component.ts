@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   posts: any;
-  responseArray: any;
   private href: string;
   constructor(
     private formBuilder: FormBuilder,
@@ -26,8 +25,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.href = this.router.url;
-    this.responseArray = this.sendGetRequest();
-    this.posts = JSON.parse(this.responseArray);
     this.form = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]

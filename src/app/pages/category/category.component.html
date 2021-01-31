@@ -5,8 +5,7 @@
 </div>
 
 <br>
-
-<ng-template ngFor let-item [ngForOf]="posts['wateks']">
+<ng-template ngFor let-item [ngForOf]="this.posts['wateks']">
   <a class=" text-left " href="kategoria/{{posts['id']}}/watek/{{item['id']}}">
     <div class="row ">
       <div class="col-md-12">
@@ -23,7 +22,7 @@
             <div class="card-footer ">
              <div class="text-right pt-0 pb-0"> ~{{item['uzytkownik']['nazwa']}}</div>
               <hr>
-              <i class="fa fa-calendar col-md-11">  {{item['data_modyfikacji']}}</i>
+              <i class="fa fa-calendar col-md-11">  {{item['data_modyfikacji'] | date}}</i>
               <a class="stats col-md-1">
               </a>
           </div>

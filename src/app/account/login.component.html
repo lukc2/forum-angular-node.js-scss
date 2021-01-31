@@ -4,17 +4,17 @@
     <div class="card-body">
         <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
             <div class="form-group">
-                <label for="username">Login</label>
-                <input type="text" id="username" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                    <div *ngIf="f.username.errors.required">Login jest wymagany</div>
+                <label for="login">Login</label>
+                <input type="text" id="login" formControlName="login" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.login.errors }" />
+                <div *ngIf="submitted && f.login.errors" class="invalid-feedback">
+                    <div *ngIf="f.login.errors.required">Login jest wymagany</div>
                 </div>
             </div>
             <div class="form-group">
-                <label for="password">Hasło</label>
-                <input type="password" id="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                    <div *ngIf="f.password.errors.required">Hasło jest wymagane</div>
+                <label for="haslo">Hasło</label>
+                <input type="haslo" id="haslo" formControlName="haslo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.haslo.errors }" />
+                <div *ngIf="submitted && f.haslo.errors" class="invalid-feedback">
+                    <div *ngIf="f.haslo.errors.required">Hasło jest wymagane</div>
                 </div>
             </div>
             <div class="form-group">
@@ -22,7 +22,7 @@
                     <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                     Zaloguj
                 </button>
-                <a routerLink="/rejestruj" class="btn btn-link">Rejestracja</a>
+                <a routerLink="/rejestracja" class="btn btn-link">Rejestracja</a>
 
             </div>
         </form>

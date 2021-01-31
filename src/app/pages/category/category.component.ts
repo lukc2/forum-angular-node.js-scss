@@ -11,25 +11,35 @@ import {Observable} from 'rxjs';
   templateUrl: 'category.component.html'
 })
 
+
 export class CategoryComponent implements OnInit {
-  http: HttpClient;
   posts: any;
-  responseArray: any;
   href: string;
-  constructor(private router: Router) {}
+  constructor(private router: Router,
+              private http: HttpClient) {
+    this.router.events.subscribe((ev) => {
+
+      if (location.pathname != this.href) {
+        // do something
+        this.href = this.router.url;
+        this.sendGetRequest();
+      }
+     });
+  }
+
   addThread() {
-      window.location.href = ( ""+ this.href + '/dodaj_watek')
+      window.location.href = ( '' + this.href + '/dodaj_watek')
   }
   sendPostRequest(data: Object, url: string): Observable<Object> {
     return this.http.post(this.href, data);
   }
   sendGetRequest() {
-    return this.http.get(this.href);
+  this.http.get(this.href).subscribe((data) => {
+      this.posts = data[0];
+    });
   }
-
   ngOnInit() {
-    this.href = this.router.url;
-    this.responseArray = this.sendGetRequest();
-    this.posts = JSON.parse(this.responseArray);
+
+    // this.posts = JSON.parse(JSON.stringify(this.responseArray));
   }
 }

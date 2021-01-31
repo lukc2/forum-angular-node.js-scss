@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 8080;
 const publicFolderPath = path.resolve(__dirname, "client", "public", "build")
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true}));
 
 //setting up session
 const sessionStore= new SequelizeStore({
@@ -59,7 +59,7 @@ app.get("/",middlewares.auth,async (req,res)=>{
 
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('./dist'));
+  app.use(express.static('dist/'));
   app.get('/*',(req,res)=>{
     res.sendFile('index.html', {root: 'dist/'})
   });
