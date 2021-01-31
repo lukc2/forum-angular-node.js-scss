@@ -4,7 +4,7 @@
   <div class="card">
     <div class="card-header ">
       <h2 class="card-title">{{request["nazwa"]}}</h2>
-      <p class="card-category">{{getTitle()}}</p>
+<!--      <p class="card-category">{{getTitle()}}</p>-->
     </div>
     <div class="card-body ">
 
@@ -27,10 +27,10 @@
 
     </div>
     <div class="card-footer ">
-      {{request["uzytkownik_id"]}}
+      {{request['posts'][0]["uzytkownik"]['nazwa']}}
       <hr>
       <div class="stats">
-        <i class="fa fa-calendar"></i> {{request["Date"]}}
+        <i class="fa fa-calendar"></i> {{request["data_modyfikacji"] | date: 'd.M.y hh:mm:ss'}}
       </div>
     </div>
   </div>

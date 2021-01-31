@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {Location} from '@angular/common';
 
 
 @Component({
@@ -16,10 +16,11 @@ export class CategoryComponent implements OnInit {
   posts: any;
   href: string;
   constructor(private router: Router,
-              private http: HttpClient) {
+              private http: HttpClient,
+              private location: Location) {
     this.router.events.subscribe((ev) => {
 
-      if (location.pathname != this.href) {
+      if (location.path() != this.href) {
         // do something
         this.href = this.router.url;
         this.sendGetRequest();

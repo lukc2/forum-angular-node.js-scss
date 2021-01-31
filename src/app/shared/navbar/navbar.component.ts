@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {Location} from '@angular/common';
 
 
+
 @Component({
   moduleId: module.id,
   selector: 'app-navbar-cmp',
@@ -18,8 +19,8 @@ export class NavbarComponent implements OnInit {
   private nativeElement: Node;
   private toggleButton;
   private sidebarVisible: boolean;
-  @Input() isLogged: boolean;
-
+  href: string;
+  @Input()user: string;
   constructor(location: Location, private renderer: Renderer2, private element: ElementRef, private router: Router) {
     this.location = location;
     this.nativeElement = element.nativeElement;
@@ -34,6 +35,7 @@ export class NavbarComponent implements OnInit {
       this.sidebarClose();
     });
   }
+
 
   getTitle() {
     var titlee = this.location.prepareExternalUrl(this.location.path());
@@ -65,7 +67,7 @@ export class NavbarComponent implements OnInit {
   }
 
   logOut() {
-    window.location.href = ('/wyloguj');
+    this.router.navigateByUrl('/wyloguj');
   }
 
   sidebarOpen() {

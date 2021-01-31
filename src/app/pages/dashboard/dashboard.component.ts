@@ -1,19 +1,11 @@
-import { Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {AlertService} from '@full-fledged/alerts';
+import {Location} from '@angular/common';
+import {FormBuilder} from '@angular/forms';
+import {Router} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
 
 
-const responseArray =  '' +
-  '[{\"Name\":\"Title of post\",' +
-  ' \"Content\":\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\",' +
-  ' \"Author\":\"Maniek\",' +
-  ' \"id\":\"0\",' +
-  ' \"Date\":\"18.01.2021\"},' +
-  ' {\"Name\":\"Title of post 2\",' +
-  ' \"Content\":\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\",' +
-  ' \"Author\":\"Maniek\",' +
-  ' \"id\":\"1\",' +
-  ' \"Date\":\"18.01.2021\"}]';
-const posts = JSON.parse(responseArray)
 
 @Component({
     selector: 'app-dashboard-cmp',
@@ -22,6 +14,21 @@ const posts = JSON.parse(responseArray)
 })
 
 export class DashboardComponent  {
-  posts = posts;
+  @Output() event: EventEmitter<any>;
+  private location: Location;
+  private href: any;
+  user: any;
+  constructor(
+    location: Location,
+    private router: Router,
+    private http: HttpClient
+  ) {
+    this.location = location;
+    this.router.events.subscribe((ev) => {
+      this.http.post('/uzytkownik', '').subscribe((req) =>
+      this.user = req['username']);
+      this.event.emit(this.user);
+      } )
+    }
 
 }

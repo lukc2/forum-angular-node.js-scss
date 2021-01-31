@@ -14,13 +14,11 @@ import {Observable} from 'rxjs';
 
 export class PostComponent implements OnInit {
   @Input() isLogged: boolean;
-  http: HttpClient;
   form: FormGroup;
   loading = false;
   submitted = false;
   posts: any;
   href: string;
-
   logCheck() {
     // if (!this.isLogged) {
     //   window.location.href = ('/loguj')
@@ -29,7 +27,8 @@ export class PostComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     public alertService: AlertService,
-    private router: Router
+    private router: Router,
+    private http: HttpClient
   ) {
     this.router.events.subscribe((ev) => {
 
@@ -40,8 +39,19 @@ export class PostComponent implements OnInit {
       }
     });
   }
-  sendPostRequest(data: Object, url: string): Observable<Object> {
-    return this.http.post(this.href, data);
+  sendPostRequest(data: Object, url: string) {
+    this.http.post(url, data).subscribe((req) => {
+      if (req['success'] == true) {
+        this.alertService.success(req['msg']);
+        this.form.reset();
+        this.router.navigateByUrl(this.href.slice(0, -11) + 'watek/' + req['watek_id']);
+      } else {
+        req['errors']['errors'].forEach((err) => {
+          this.alertService.danger(err['msg']);
+        });
+      }
+      this.loading = false;
+    });
   }
   sendGetRequest() {
     this.http.get(this.href).subscribe((data) => {
@@ -49,8 +59,10 @@ export class PostComponent implements OnInit {
     });
   }
   ngOnInit() {
+    this.href = this.router.url;
     this.form = this.formBuilder.group({
-      title: ['', Validators.required, Validators.min(10)]
+      tytul: ['', [Validators.required, Validators.min(10)]],
+      tresc: ['', [Validators.required, Validators.min(10)]]
     });
   }
   get f() { return this.form.controls; }
@@ -61,8 +73,6 @@ export class PostComponent implements OnInit {
       return;
     }
     this.loading = true;
-    this.sendPostRequest(JSON.stringify(post), this.href);
-    this.form.reset();
-    this.alertService.success('Dodano watek!');
+    this.sendPostRequest(post, this.href);
   }
 }

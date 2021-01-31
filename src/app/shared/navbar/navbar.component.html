@@ -28,13 +28,14 @@
 <!--          </div>-->
 <!--        </div>-->
 <!--      </form>-->
+      {{user}}
       <ul class="navbar-nav">
         <li class="nav-item btn-rotate" ngbDropdown placement="bottom-left">
           <a class="nav-link" ngbDropdownToggle id="navbarDropdownMenuLink" >
             <i class="nc-icon nc-single-02"></i>
           </a>
           <div ngbDropdownMenu aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu dropdown-menu-right">
-            <div *ngIf="isLogged; else elseBlock">
+            <div *ngIf="user!=''; else elseBlock">
               <a ngbDropdownItem (click)="logOut()">Wyloguj się</a>
 <!--              <a ngbDropdownItem (click)="profile()">Profile</a>-->
             </div>

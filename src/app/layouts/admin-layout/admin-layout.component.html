@@ -4,10 +4,10 @@
         <app-sidebar-cmp></app-sidebar-cmp>
     </div>
     <div class="main-panel">
-        <app-navbar-cmp></app-navbar-cmp>
+        <app-navbar-cmp [user] = "userInfo"></app-navbar-cmp>
 
         <div class="content">
-            <router-outlet></router-outlet>
+            <router-outlet (event)="this.userInfo = $event"></router-outlet>
         </div>
         <footer-cmp></footer-cmp>
     </div>

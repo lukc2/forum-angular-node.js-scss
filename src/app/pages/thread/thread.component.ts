@@ -17,7 +17,6 @@ import {ROUTES} from '../../sidebar/sidebar.component';
 
 export class ThreadComponent implements OnInit {
   location: Location;
-  http: HttpClient;
   form: FormGroup;
   loading = false;
   submitted = false;
@@ -29,7 +28,8 @@ export class ThreadComponent implements OnInit {
     location: Location,
     private formBuilder: FormBuilder,
     public alertService: AlertService,
-    private router: Router
+    private router: Router,
+    private http: HttpClient
   ) {
     this.location = location;
     this.router.events.subscribe((ev) => {
@@ -43,12 +43,25 @@ export class ThreadComponent implements OnInit {
   ngOnInit(): void {
     this.listTitles = ROUTES.filter(listTitle => listTitle);
     this.form = this.formBuilder.group({
-      body: ['', Validators.required]
+      tresc: ['', Validators.required]
     });
   }
   get f() { return this.form.controls; }
-  sendPostRequest(data: Object, url: string): Observable<Object> {
-    return this.http.post(this.href, data);
+  sendPostRequest(data: Object, url: string) {
+    this.http.post(this.href, data).subscribe((req) => {
+      if (req['success'] == true) {
+        this.alertService.success(req['msg']);
+        this.form.reset();
+        this.loading = false;
+        this.sendGetRequest();
+      } else {
+        req['errors']['errors'].forEach((err) => {
+          this.alertService.danger(err['msg']);
+          this.loading = false;
+        });
+      }
+
+    });
   }
   sendGetRequest() {
     this.http.get(this.href).subscribe((data) => {
@@ -61,9 +74,7 @@ export class ThreadComponent implements OnInit {
       return;
     }
     this.loading = true;
-    this.sendPostRequest(JSON.stringify(post), this.href);
-    this.alertService.success('Zapostowano!');
-    this.form.reset();
+    this.sendPostRequest(post, this.href);
   }
   getTitle() {
     var titlee = this.location.prepareExternalUrl(this.location.path());
