@@ -81,12 +81,12 @@ router.post('/', [
         }
         const salt = bcrypt.genSaltSync(8);
         const pwd = bcrypt.hashSync(body.haslo, salt);
-        let User = await db.Uzytkownik.create({
+        db.Uzytkownik.create({
             nazwa: body.nazwa,
             login: body.login,
             haslo: pwd,
             email: body.email
-        }).then(() => {
+        }).then(User => {
             res.json({
                 success: true,
                 id: User.id,
