@@ -7,7 +7,8 @@
         <app-navbar-cmp [user] = "userInfo"></app-navbar-cmp>
 
         <div class="content">
-            <router-outlet (event)="this.userInfo = $event"></router-outlet>
+              <router-outlet></router-outlet>
+<!--          <router-outlet (evente)="info($event)"></router-outlet>-->
         </div>
         <footer-cmp></footer-cmp>
     </div>

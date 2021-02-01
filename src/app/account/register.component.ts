@@ -37,15 +37,18 @@ export class RegisterComponent implements OnInit {
   sendPostRequest(data: Object, url: string) {
     this.http.post(this.href, data).subscribe((req) => {
       if (req['success'] == true) {
+        this.loading = false;
         this.alertService.success(req['msg']);
         this.form.reset();
         this.router.navigateByUrl('/loguj');
       } else {
+        this.loading = false;
+        this.alertService.danger('Wystąpił błąd!');
         req['errors']['errors'].forEach((err) => {
           this.alertService.danger(err['msg']);
         });
       }
-      this.loading = false;
+
     });
   }
   sendGetRequest() {

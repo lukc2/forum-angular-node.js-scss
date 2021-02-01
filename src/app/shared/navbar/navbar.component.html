@@ -36,12 +36,13 @@
           </a>
           <div ngbDropdownMenu aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu dropdown-menu-right">
             <div *ngIf="user!=''; else elseBlock">
-              <a ngbDropdownItem (click)="logOut()">Wyloguj się</a>
+
 <!--              <a ngbDropdownItem (click)="profile()">Profile</a>-->
             </div>
             <ng-template #elseBlock>
               <a ngbDropdownItem (click)="logIn()">Zaloguj się</a>
-              <a ngbDropdownItem (click)="register()">Zarejestruj się</a>
+              <a ngbDropdownItem (click)="logOut()">Wyloguj się</a>
+<!--              <a ngbDropdownItem (click)="register()">Zarejestruj się</a>-->
             </ng-template>
 
             </div>

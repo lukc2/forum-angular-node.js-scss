@@ -11,5 +11,7 @@ import {HttpClient} from '@angular/common/http';
 export class AdminLayoutComponent implements OnInit {
   userInfo = '';
   ngOnInit() { }
-
+  // info(inf){
+  //   this.userInfo = inf;
+  // }
 }

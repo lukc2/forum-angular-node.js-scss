@@ -14,21 +14,21 @@ import {HttpClient} from '@angular/common/http';
 })
 
 export class DashboardComponent  {
-  @Output() event: EventEmitter<any>;
-  private location: Location;
-  private href: any;
-  user: any;
-  constructor(
-    location: Location,
-    private router: Router,
-    private http: HttpClient
-  ) {
-    this.location = location;
-    this.router.events.subscribe((ev) => {
-      this.http.post('/uzytkownik', '').subscribe((req) =>
-      this.user = req['username']);
-      this.event.emit(this.user);
-      } )
-    }
+  // @Output() evente: EventEmitter<any>;
+  // private location: Location;
+  // private href: any;
+  // user: '';
+  // constructor(
+  //   location: Location,
+  //   private router: Router,
+  //   private http: HttpClient
+  // ) {
+  //   this.location = location;
+  //   // this.router.events.subscribe((ev) => {
+  //   //   this.http.post('/uzytkownik', '').subscribe((req) =>
+  //   //   this.user = req['username']);
+  //   //   // this.evente.emit(this.user);
+  //   //   } )
+  //   }
 
 }

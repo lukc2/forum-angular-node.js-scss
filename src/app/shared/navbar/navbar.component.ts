@@ -2,7 +2,7 @@ import {Component, OnInit, Renderer2, ViewChild, ElementRef, Input} from '@angul
 import {ROUTES} from '../../sidebar/sidebar.component';
 import {Router} from '@angular/router';
 import {Location} from '@angular/common';
-
+import {AlertService} from '@full-fledged/alerts';
 
 
 @Component({
@@ -21,7 +21,8 @@ export class NavbarComponent implements OnInit {
   private sidebarVisible: boolean;
   href: string;
   @Input()user: string;
-  constructor(location: Location, private renderer: Renderer2, private element: ElementRef, private router: Router) {
+  constructor(location: Location, private renderer: Renderer2, private element: ElementRef,
+              private router: Router, private alert: AlertService) {
     this.location = location;
     this.nativeElement = element.nativeElement;
     this.sidebarVisible = false;
@@ -49,7 +50,9 @@ export class NavbarComponent implements OnInit {
     }
     return '';
   }
-
+  userInfo(info) {
+    this.user = info;
+  }
   sidebarToggle() {
     if (this.sidebarVisible === false) {
       this.sidebarOpen();
@@ -59,15 +62,16 @@ export class NavbarComponent implements OnInit {
   }
 
   logIn() {
-    window.location.href = '/loguj';
+    this.router.navigateByUrl('/loguj').catch(reason => this.alert.info(reason));
   }
 
   register() {
-    window.location.href = ('/rejestracja');
+    this.router.navigateByUrl('/rejestracja').catch(reason => this.alert.info(reason));
   }
 
   logOut() {
-    this.router.navigateByUrl('/wyloguj');
+    window.location.replace('/wyloguj');
+    this.alert.info('Wylogowano!');
   }
 
   sidebarOpen() {

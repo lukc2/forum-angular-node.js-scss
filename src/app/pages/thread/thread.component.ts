@@ -55,9 +55,9 @@ export class ThreadComponent implements OnInit {
         this.loading = false;
         this.sendGetRequest();
       } else {
+        this.loading = false;
         req['errors']['errors'].forEach((err) => {
           this.alertService.danger(err['msg']);
-          this.loading = false;
         });
       }
 

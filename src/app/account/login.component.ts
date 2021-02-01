@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   posts: any;
+  test: any;
   private href: string;
   constructor(
     private formBuilder: FormBuilder,
@@ -39,12 +40,15 @@ export class LoginComponent implements OnInit {
         this.form.reset();
         this.alertService.success(req['msg']);
         this.router.navigateByUrl('/dashboard');
+        this.loading = false;
       } else {
-        req['errors']['errors'].forEach((err) => {
+        this.loading = false;
+        this.alertService.danger('Wystąpił błąd!');
+        this.test = req;
+        req['errors'].forEach((err) => {
           this.alertService.danger(err['msg']);
         });
       }
-      this.loading = false;
     });
   }
   sendGetRequest() {
