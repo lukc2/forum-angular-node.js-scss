@@ -5,7 +5,7 @@
 </div>
 
 <br>
-<ng-template ngFor let-item [ngForOf]="this.posts['wateks']">
+<ng-template ngFor let-item [ngForOf]="(this.posts['wateks'] || [])">
   <a class=" text-left " routerLink="/kategoria/{{posts['id']}}/watek/{{item['id']}}">
     <div class="row ">
       <div class="col-md-12">

@@ -55,7 +55,12 @@ export class PostComponent implements OnInit {
   }
   sendGetRequest() {
     this.http.get(this.href).subscribe((data) => {
-      this.posts = data[0];
+      if (data['redirectTo'] == '/') {
+        this.alertService.warning(data['msg']);
+        this.router.navigateByUrl('/dashboard');
+      } else {
+        this.posts = data[0];
+      }
     });
   }
   ngOnInit() {

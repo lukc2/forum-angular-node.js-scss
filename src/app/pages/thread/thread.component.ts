@@ -65,7 +65,12 @@ export class ThreadComponent implements OnInit {
   }
   sendGetRequest() {
     this.http.get(this.href).subscribe((data) => {
-      this.request = data[0];
+      if (data['redirectTo'] == '/') {
+        this.alertService.warning(data['msg']);
+        this.router.navigateByUrl('/dashboard');
+      } else {
+        this.request = data[0];
+      }
     });
   }
   onSubmit(post) {
