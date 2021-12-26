@@ -3,6 +3,6 @@
 
 Angular + Node.js
 
-Frontend - Łukasz Ćwiek
-Backend - Sebastian Kryszczuk
-Baza Danych + Projekt ideowy strony - Andrzej Kulik
+Frontend - https://github.com/lukc2
+Backend - https://github.com/elo240
+Baza Danych + Projekt ideowy strony - https://github.com/ZehirAhsen
