@@ -1,5 +1,4 @@
 # CwiekProjektZaliczeniowy
-Łukasz Ćwiek, Sebastian Kryszczuk, Andrzej Kulik
 
 Angular + Node.js
 
